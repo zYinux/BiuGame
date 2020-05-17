@@ -23,6 +23,8 @@ namespace zyinux{
         //绘制当前window
         void draw()override ;
 
+        void onDraw();
+
         //销毁window
         void destroy()override ;
 

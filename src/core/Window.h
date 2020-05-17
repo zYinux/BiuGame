@@ -10,9 +10,10 @@
 #include "SDL.h"
 #include "GameException.h"
 #include "../includes/Logger.h"
+#include "Canvas.h"
+
 namespace zyinux {
     class Scenes;
-
     class Window {
 
     public:
@@ -23,14 +24,15 @@ namespace zyinux {
                int y,
                Uint32 flag,
                int w,
-               int h ) :
-                title(t), _height(h), _width(w),_flag(flag),_x(x),_y(y) {
+               int h) :
+                title(t), _height(h), _width(w), _flag(flag), _x(x), _y(y) {
             window = SDL_CreateWindow(title.c_str(), x, y, w, h, flag);
 
             if (!window)
-                throw GameException("create Window fail :"+std::string(SDL_GetError()));
-
-            logger.debug("create window:"+t);
+                throw GameException("create Window fail :" + std::string(SDL_GetError()));
+            createRenderer();
+            initCanvas();
+            logger.debug("create window:" + t);
         }
 
         Window(const Window &);
@@ -45,14 +47,23 @@ namespace zyinux {
         //销毁window
         virtual void destroy() = 0;
 
+        void initCanvas();
+
     protected:
         std::stack<std::shared_ptr<Scenes>> sceness;
         SDL_Window *window;
+        SDL_Renderer *renderer;
+        Canvas canvas;
         int _width;
         int _height;
-        int _x,_y;
+        int _x, _y;
         Uint32 _flag;
         const std::string &title;
+
+    private:
+        void createRenderer() {
+            renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+        }
     };
 }
 

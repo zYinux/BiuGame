@@ -7,7 +7,10 @@
 
 using namespace std;
 using namespace zyinux;
+
+
 int main() {
+
     Game game;
     game.init();
     GameWindow gameWindow("title");

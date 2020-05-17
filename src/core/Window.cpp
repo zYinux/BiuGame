@@ -3,3 +3,8 @@
 //
 
 #include "Window.h"
+#include "SDL.h"
+#include "Canvas.h"
+void zyinux::Window::initCanvas() {
+    canvas = Canvas(renderer,_width,_height);
+}

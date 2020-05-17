@@ -15,7 +15,7 @@ include_directories(${SDL2_IMAGE_INCLUDE_DIR})
 include_directories(${SDL2_TTF_INCLUDE_DIR})
 include_directories(${SDL2_MIXER_INCLUDE_DIR})
 
-add_executable(BiuBiuBiu main.cpp src/includes/Logger.h src/includes/sdl_utils.h src/core/Game.cpp src/core/Game.h src/core/Window.cpp src/core/Window.h src/core/Scenes.cpp src/core/Scenes.h src/core/Resources.cpp src/core/Resources.h src/core/ResourcesMaganger.cpp src/core/ResourcesMaganger.h src/core/GameException.h src/core/GameWindow.cpp src/core/GameWindow.h)
+add_executable(BiuBiuBiu main.cpp src/includes/Logger.h src/includes/sdl_utils.h src/core/Game.cpp src/core/Game.h src/core/Window.cpp src/core/Window.h src/core/Scenes.cpp src/core/Scenes.h src/core/Resources.cpp src/core/Resources.h src/core/ResourcesMaganger.cpp src/core/ResourcesMaganger.h src/core/GameException.h src/core/GameWindow.cpp src/core/GameWindow.h src/core/Canvas.cpp src/core/Canvas.h src/core/Color.h src/core/Graphics.h)
 
 target_link_libraries(BiuBiuBiu
         ${SDL2_LIBRARY}

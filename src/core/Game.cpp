@@ -22,6 +22,9 @@ namespace zyinux {
         if (SDL_Init(flag) == -1) {
             throw GameException("init SDL2 error:" + std::string(SDL_GetError()));
         }
+
+        SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, 4);
+
     }
 
     void Game::initMixer() {
@@ -40,11 +43,16 @@ namespace zyinux {
     }
 
     void Game::loop() {
-        bool run=1;
+        bool run= true;
         while (run){
             SDL_Event event;
             SDL_PollEvent(&event);
-
+            if (SDL_QUIT == event.type) { // 如果事件为推出SDL，结束循环。
+               run= false;
+            } else{
+                auto top=windows.top();
+                (*top)->draw();
+            }
         }
     }
 
